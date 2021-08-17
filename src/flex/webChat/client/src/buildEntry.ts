@@ -11,8 +11,17 @@
  * specific language governing permissions and limitations under the License.
  *
  */
+<<<<<<< HEAD:src/flex/webChat/client/src/buildEntry.ts
 import { ServiceDesk, ServiceDeskFactoryParameters } from '../../../../types/serviceDesk';
 import { TwilioFlex } from './twilioFlex';
+=======
+import { ExampleServiceDesk } from './serviceDesks/exampleServiceDesk';
+import { GenesysServiceDesk } from './serviceDesks/genesys/genesysServiceDesk';
+import { InContactServiceDesk } from './serviceDesks/incontact/inContactServiceDesk';
+import { TwilioFlex } from './serviceDesks/twilio/twilioFlex';
+import { OracleB2CServiceDesk } from './serviceDesks/oracle/oracleB2CServiceDesk';
+import { ServiceDesk, ServiceDeskFactoryParameters } from './types/serviceDesk';
+>>>>>>> origin/main:src/buildEntry.ts
 
 /**
  * This file exports the methods used by web chat to communicate back and forth with the service desk. It is exposed
@@ -24,7 +33,25 @@ import { TwilioFlex } from './twilioFlex';
  * @param parameters ServiceDeskFactoryParameters passed from web chat into service desk.
  */
 function WebChatServiceDeskFactory(parameters: ServiceDeskFactoryParameters): ServiceDesk {
+<<<<<<< HEAD:src/flex/webChat/client/src/buildEntry.ts
   return new TwilioFlex(parameters);
+=======
+  return getInstance(parameters);
+}
+
+function getInstance(
+  parameters: ServiceDeskFactoryParameters,
+): TwilioFlex | ExampleServiceDesk | GenesysServiceDesk | InContactServiceDesk | OracleB2CServiceDesk {
+  const serviceDeskClass: string = process.env.SERVICE_DESK_CLASS || 'ExampleServiceDesk';
+  const constructors: any = {
+    TwilioFlex,
+    ExampleServiceDesk,
+    GenesysServiceDesk,
+    InContactServiceDesk,
+    OracleB2CServiceDesk,
+  };
+  return new constructors[serviceDeskClass](parameters);
+>>>>>>> origin/main:src/buildEntry.ts
 }
 
 export default WebChatServiceDeskFactory;

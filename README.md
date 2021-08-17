@@ -18,6 +18,8 @@ These implementations, while functional, are examples only, and have not been ve
 - [Genesys Cloud](./src/genesys/webChat)  
 - [Twilio Flex](./src/flex/webChat) 
 - [NICE inContact](./src/incontact/webChat)
+- [Oracle Cloud B2C](./src/oracle/webChat)
+
 
 ### Technical requirements and scope
 
